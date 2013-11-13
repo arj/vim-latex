@@ -27,7 +27,10 @@ let s:description ="\\begin{description}\<cr>\\item[<+label+>]<++>\<cr>\\end{des
 let s:document =   "\\documentclass[<+options+>]{<+class+>}\<cr>\<cr>\\begin{document}\<cr><++>\<cr>\\end{document}"
 let s:tabular = "\\begin{tabular}[<+hbtp+>]{<+format+>}\<cr><++>\<cr>\\end{tabular}"
 let s:tabular_star = "\\begin{tabular*}[<+hbtp+>]{<+format+>}\<cr><++>\<cr>\\end{tabular*}"
-
+let s:beamer_frame = "\\begin{frame}\<cr>\\frametitle{<+title+>}\<cr><++>\<cr>\\end{frame}"
+let s:beamer_block = "\\begin{block}{<+title+>}\<cr><++>\<cr>\\end{block}"
+let s:beamer_exampleblock = "\\begin{exampleblock}{<+title+>}\<cr><++>\<cr>\\end{exampleblock}"
+let s:beamer_alertblock = "\\begin{alertblock}{<+title+>}\<cr><++>\<cr>\\end{alertblock}"
 " }}}
 " define environments with special behavior in line wise selection. {{{
 if !exists('s:vis_center_left')
@@ -266,6 +269,12 @@ call s:Tex_EnvMacros('', '', 'figure*')
 call s:Tex_EnvMacros('ELR', '', 'lrbox')
 call s:Tex_SpecialMacros('EMP', '', 'minipage', s:minipage)
 call s:Tex_SpecialMacros('EPI', '', 'picture', s:picture)
+" }}}
+" Beamer {{{
+call s:Tex_SpecialMacros('BFR', '', 'frame', s:beamer_frame)
+call s:Tex_SpecialMacros('BBL', '', 'block', s:beamer_block)
+call s:Tex_SpecialMacros('BEBL', '', 'exampleblock', s:beamer_exampleblock)
+call s:Tex_SpecialMacros('BABL', '', 'alertblock', s:beamer_alertblock)
 " }}}
 
 if g:Tex_CatchVisMapErrors
